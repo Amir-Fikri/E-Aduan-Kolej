@@ -1,0 +1,12 @@
+# NetBeans build output
+build/
+dist/
+**/build/
+**/dist/
+
+# NetBeans private settings (per-computer)
+nbproject/private/
+**/nbproject/private/
+
+# macOS
+.DS_Store
