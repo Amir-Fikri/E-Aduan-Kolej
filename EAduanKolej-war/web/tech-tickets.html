@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Update the maintenance tickets routed to your department." />
+    <title>Shift Board · EAduanKolej</title>
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/global.css" />
+    <link rel="stylesheet" href="assets/css/tech-tickets.css" />
+    <script defer src="assets/js/demo-data.js"></script>
+    <script defer src="assets/js/report-service.js"></script>
+    <script defer src="assets/js/tech-service.js"></script>
+    <script defer src="assets/js/student-ui.js"></script>
+    <script defer src="assets/js/tech-tickets.js"></script>
+  </head>
+  <body class="theme-tech">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div
+      id="app-shell"
+      data-nav-label="Technician navigation"
+      data-nav-href="tech-tickets.html"
+      data-nav-text="Shift board"
+      data-nav-icon="tool"
+    ></div>
+    <main id="main" class="main" tabindex="-1">
+      <header class="page-top">
+        <div>
+          <span class="eyebrow">TECHNICIAN PORTAL</span>
+          <p class="breadcrumb">Maintenance <span>/</span> Shift board</p>
+        </div>
+        <div class="profile">
+          <span class="avatar" id="tech-initials"></span>
+          <div><strong id="tech-name"></strong><span id="tech-role"></span></div>
+        </div>
+      </header>
+
+      <section class="shift-hero" aria-labelledby="hero-title">
+        <div class="shift-hero-text">
+          <time class="shift-date" id="hero-date"></time>
+          <div class="shift-greeting">
+            <span class="shift-eyebrow" id="hero-eyebrow"></span>
+            <h1 id="hero-title"></h1>
+          </div>
+        </div>
+        <div class="next-card" id="next-card" aria-live="polite"></div>
+      </section>
+
+      <section aria-label="Ticket counts by status" id="ticket-stats" class="stats-grid"></section>
+
+      <section class="jobs-section" aria-labelledby="jobs-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="jobs-heading">
+              Your active jobs <span id="jobs-badge" class="count-badge"></span>
+            </h2>
+            <p>Repairs you have started. Mark them resolved when the fix is done.</p>
+          </div>
+        </div>
+        <div class="job-grid" id="job-grid"></div>
+      </section>
+
+      <section class="reports-section" aria-labelledby="tickets-heading">
+        <div class="section-heading">
+          <div>
+            <h2 id="tickets-heading" tabindex="-1">
+              Department queue <span id="total-badge" class="count-badge"></span>
+            </h2>
+            <p id="department-note"></p>
+          </div>
+        </div>
+        <div class="toolbar">
+          <div class="search-field">
+            <span data-icon="search"></span
+            ><label class="sr-only" for="search">Search tickets</label
+            ><input
+              id="search"
+              type="search"
+              placeholder="Search"
+              autocomplete="off"
+            />
+          </div>
+          <div class="toolbar-filters">
+            <div class="sort-field">
+              <label for="priority">Priority</label
+              ><select id="priority">
+                <option value="All">All</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+            <div class="sort-field">
+              <label for="sort">Sort by</label
+              ><select id="sort">
+                <option value="priority">Priority: highest to lowest</option>
+                <option value="newest">Newest to oldest</option>
+                <option value="oldest">Oldest to newest</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div
+          id="status-tabs"
+          class="filter-tabs"
+          role="group"
+          aria-label="Filter tickets by status"
+        ></div>
+        <p id="results-summary" class="results-summary" role="status" aria-live="polite"></p>
+        <div class="table-wrap">
+          <table class="report-table tech-table">
+            <caption class="sr-only">
+              Maintenance tickets for your department
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Ticket</th>
+                <th scope="col">Location</th>
+                <th scope="col">Reported</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Status</th>
+                <th scope="col"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="ticket-rows"></tbody>
+          </table>
+        </div>
+        <div id="empty-state" class="empty-state" hidden>
+          <span class="empty-icon" data-icon="search"></span>
+          <h3>No tickets found</h3>
+          <p>Try another search, priority or status.</p>
+          <button type="button" class="button button-secondary" id="clear-filters">
+            Clear filters
+          </button>
+        </div>
+        <div class="list-footer">
+          <span id="list-count"></span>
+        </div>
+      </section>
+
+      <section class="panel activity-panel" aria-labelledby="activity-heading">
+        <div class="panel-heading">
+          <span data-icon="clock"></span>
+          <h2 id="activity-heading">Recent activity</h2>
+        </div>
+        <ol class="timeline" id="activity"></ol>
+      </section>
+
+      <footer class="page-footer">
+        <span
+          >EAduanKolej <span class="footer-dot">·</span> Every fix makes college feel like
+          home.</span
+        >
+      </footer>
+    </main>
+    <div id="shared-dialogs"></div>
+    <dialog id="ticket-dialog" aria-labelledby="dialog-title">
+      <form method="dialog" class="dialog-body">
+        <span class="dialog-symbol" data-icon="tool"></span>
+        <div class="detail-kicker" id="dialog-kicker"></div>
+        <h2 id="dialog-title"></h2>
+        <dl class="information-grid dialog-info" id="dialog-info"></dl>
+        <div class="description">
+          <h3>Description</h3>
+          <p id="dialog-description"></p>
+        </div>
+        <p class="dialog-closed" id="dialog-closed" hidden></p>
+        <div class="dialog-field" id="update-fields">
+          <p class="status-change" id="status-change"></p>
+        </div>
+        <p class="form-error" id="update-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button class="button button-secondary" value="close">Close</button
+          ><button type="button" id="confirm-update" class="button button-primary"></button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

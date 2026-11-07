@@ -80,15 +80,31 @@
     },
   };
   var shell = document.getElementById("app-shell");
+  var data = shell ? shell.dataset : {};
+  var nav = {
+    label: data.navLabel || "Student navigation",
+    href: data.navHref || "my-tickets.html",
+    icon: data.navIcon || "reports",
+    text: data.navText || "My reports",
+    count: data.navHref ? "" : ReportService.list().length,
+  };
   if (shell)
     shell.innerHTML =
-      '<aside class="sidebar"><a class="brand" href="my-tickets.html">' +
+      '<aside class="sidebar"><a class="brand" href="' +
+      nav.href +
+      '">' +
       '<span class="brand-mark">' +
       icon("home") +
-      '</span><span>EAduan<span class="brand-accent">Kolej</span><small>HOSTEL MAINTENANCE</small></span></a><div class="sidebar-label">WORKSPACE</div><nav aria-label="Student navigation"><a class="nav-link active" aria-current="page" href="my-tickets.html">' +
-      icon("reports") +
-      '<span>My reports</span><span class="nav-count">' +
-      ReportService.list().length +
+      '</span><span>EAduan<span class="brand-accent">Kolej</span><small>ROOM MAINTENANCE</small></span></a><div class="sidebar-label">WORKSPACE</div><nav aria-label="' +
+      nav.label +
+      '"><a class="nav-link active" aria-current="page" href="' +
+      nav.href +
+      '">' +
+      icon(nav.icon) +
+      "<span>" +
+      nav.text +
+      '</span><span class="nav-count">' +
+      nav.count +
       '</span></a></nav><div class="sidebar-bottom"><a class="logout-link" href="logout.html">' +
       icon("logout") +
       "<span>Logout</span></a></div></aside>";

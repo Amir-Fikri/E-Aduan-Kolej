@@ -1,4 +1,3 @@
-/* nanti ganti dengan servlet request request*/
 (function () {
   "use strict";
   var seed = window.EAduanDemo,
@@ -65,6 +64,7 @@
     result.category = find(seed.categories, ticket.categoryId);
     result.department = find(seed.departments, ticket.departmentId);
     result.technician = tech ? find(seed.users, tech.userId) : null;
+    result.student = find(seed.users, ticket.studentId);
     result.logs = clone(
       data.ticketStatusLogs.filter(function (log) {
         return log.ticketId === ticket.id;
@@ -153,4 +153,6 @@
       return storageAvailable;
     },
   };
+
+  window.EAduanStore = { seed: seed, state: state, save: save, join: join, find: find };
 })();
