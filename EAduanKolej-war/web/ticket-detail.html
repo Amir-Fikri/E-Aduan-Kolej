@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Report Details · EAduanKolej</title>
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/student-reports.css" />
+    <script defer src="assets/js/demo-data.js"></script>
+    <script defer src="assets/js/report-service.js"></script>
+    <script defer src="assets/js/student-ui.js"></script>
+    <script defer src="assets/js/ticket-detail.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="app-shell"></div>
+    <main id="main" class="main" tabindex="-1">
+      <header class="page-top">
+        <div>
+          <span class="eyebrow">STUDENT PORTAL</span>
+          <p class="breadcrumb">
+            Maintenance <span>/</span> <a href="my-tickets.html">My reports</a>
+            <span>/</span> Details
+          </p>
+        </div>
+        <div class="profile">
+          <span class="avatar">AN</span>
+          <div><strong>Aina Nadhirah</strong><span>Student · Block A</span></div>
+        </div>
+      </header>
+      <a href="my-tickets.html" class="back-link"
+        ><span aria-hidden="true">←</span> Back to my reports</a
+      >
+      <div id="detail-content"></div>
+      <footer class="page-footer">
+        <span>EAduanKolej <span class="footer-dot">·</span> A little care goes a long way.</span>
+      </footer>
+    </main>
+    <div id="shared-dialogs"></div>
+    <dialog id="cancel-dialog" aria-labelledby="cancel-title">
+      <form method="dialog" class="dialog-body">
+        <span class="dialog-symbol warning" data-icon="close"></span>
+        <h2 id="cancel-title">Cancel this report?</h2>
+        <p>
+          The maintenance team will no longer work on this report. You can only cancel while it is
+          Pending.
+        </p>
+        <label for="cancel-reason">Reason <span class="optional">(optional)</span></label
+        ><textarea
+          id="cancel-reason"
+          rows="3"
+          maxlength="300"
+          placeholder="For example, the issue has already been fixed."
+        ></textarea>
+        <p class="form-error" id="cancel-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button class="button button-secondary" value="keep">Keep report</button
+          ><button type="button" id="confirm-cancel" class="button button-danger">
+            Yes, cancel report
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>
