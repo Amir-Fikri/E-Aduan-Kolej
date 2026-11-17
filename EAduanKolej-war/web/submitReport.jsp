@@ -106,5 +106,7 @@ button:hover {
 
     </form>
 
+    <p><a href="my-tickets.html">Back to My Reports</a></p>
+
 </body>
 </html>

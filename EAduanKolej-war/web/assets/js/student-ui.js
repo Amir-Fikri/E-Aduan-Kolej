@@ -105,7 +105,7 @@
       nav.text +
       '</span><span class="nav-count">' +
       nav.count +
-      '</span></a></nav><div class="sidebar-bottom"><a class="logout-link" href="logout.html">' +
+      '</span></a></nav><div class="sidebar-bottom"><a class="logout-link" href="logout.jsp">' +
       icon("logout") +
       "<span>Logout</span></a></div></aside>";
   var dialogs = document.getElementById("shared-dialogs");

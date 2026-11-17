@@ -141,7 +141,7 @@
     search.focus();
   });
   document.getElementById("new-report").addEventListener("click", function () {
-    document.getElementById("module-dialog").showModal();
+    window.location.href = "submitReport.jsp";
   });
   window.addEventListener("storage", render);
   render();

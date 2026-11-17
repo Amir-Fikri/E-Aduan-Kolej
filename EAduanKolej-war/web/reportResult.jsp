@@ -117,7 +117,8 @@
 <p><b>Assigned Department:</b>
    <%= escapeHtml(report.getDepartment()) %></p>
 
-    <a href="submitReport.jsp">Back to Submit Report</a>
+    <a href="submitReport.jsp">Back to Submit Report</a> |
+    <a href="my-tickets.html">Back to My Reports</a>
 
 </body>
 </html>
